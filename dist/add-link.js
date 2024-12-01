@@ -1,14 +1,13 @@
 function findAtLink(btn, { protocol = "web+at" } = {}) {
     const area = btn?.parentNode?.parentNode?.parentNode?.parentNode;
     const link = area?.firstElementChild?.lastElementChild;
-    if (!link) {
+    // either the anchor, or the current location
+    let href = link instanceof HTMLAnchorElement ? link.href : window.location.href;
+    if (!href) {
         throw new Error("Post link expected");
     }
-    if (!(link instanceof HTMLAnchorElement)) {
-        throw new Error("Post anchor expected");
-    }
     //from: https://bsky.app/profile/jauntywk.bsky.social/post/3lc2oa5rl6s2r
-    const paths = new URL(link.href).pathname.split("/");
+    const paths = new URL(href).pathname.split("/");
     //to: at://jauntywk.bsky.social/app.bsky.feed.post/3lc2oa5rl6s2r
     return `${protocol}://${paths[2]}/app.bsky.feed.post/${paths[4]}`;
 }
