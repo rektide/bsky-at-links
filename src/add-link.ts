@@ -44,6 +44,7 @@ function insertLinkBtn(href: string, { target }: InsertLinkBtnOptions = {}) {
 		anchor.target = target
 	}
 	anchor.style.textDecoration = "none"
+	anchor.classList.add("webext-at-link")
 	anchor.appendChild(clone)
 
 	copyLink.insertAdjacentElement('afterend', anchor)
