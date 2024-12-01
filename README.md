@@ -10,8 +10,9 @@ Useful especially for easy navigation into [pdsls.dev](https://pdsls.dev), which
 
 Option menu with a `at://` link to the post:
 
-![Request For Enhancement for pdsls at:// support](./rfe-rph.png)
-https://bsky.app/profile/jauntywk.bsky.social/post/3lc2oa5rl6s2r
+![Request For Enhancement for pdsls at:// support](./rfe-rph.jpg)
+
+- from https://bsky.app/profile/jauntywk.bsky.social/post/3lc2oa5rl6s2r
 
 # Credits
 
