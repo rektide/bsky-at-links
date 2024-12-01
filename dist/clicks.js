@@ -8,10 +8,12 @@ function optionContextHandler(event) {
         console.trace("click was not on open options");
         return;
     }
+    console.log("ctx", event);
     cur.resolve(event.target);
     cur = Promise.withResolvers();
 }
 document.body.addEventListener("click", optionContextHandler, true);
+document.body.addEventListener("keydown", optionContextHandler, true);
 export async function* options() {
     while (true) {
         yield await cur.promise;

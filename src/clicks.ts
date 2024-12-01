@@ -1,6 +1,6 @@
 let cur: PromiseWithResolvers<HTMLElement> = Promise.withResolvers()
 
-function optionContextHandler(event: MouseEvent) {
+function optionContextHandler(event: UIEvent) {
   if (!(event?.target instanceof HTMLButtonElement)) {
     console.trace("click was not button")
     return;
@@ -9,12 +9,14 @@ function optionContextHandler(event: MouseEvent) {
     console.trace("click was not on open options")
     return;
   }
+  console.log("ctx", event)
 
   cur.resolve(event.target)
   cur = Promise.withResolvers()
 }
 
 document.body.addEventListener("click", optionContextHandler, true)
+document.body.addEventListener("keydown", optionContextHandler, true)
 
 export async function* options() {
   while (true) {
