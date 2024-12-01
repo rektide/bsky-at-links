@@ -1,5 +1,5 @@
 function findAtLink(btn, { protocol = "web+at" } = {}) {
-    const area = btn?.parentNode?.parentNode;
+    const area = btn?.parentNode?.parentNode?.parentNode?.parentNode;
     const link = area?.firstElementChild?.lastElementChild;
     if (!link) {
         throw new Error("Post link expected");
@@ -18,10 +18,11 @@ function insertLinkBtn(href, { target } = {}) {
         throw new Error("Expected copy link option item");
     }
     // copy and modify menu item
-    const clone = copyLink?.lastElementChild?.cloneNode();
+    const clone = copyLink.cloneNode();
     if (!clone) {
         throw new Error("Expected option item");
     }
+    clone.innerHTML = copyLink.innerHTML;
     if (!(clone.firstElementChild instanceof HTMLElement)) {
         throw new Error("Expected option item name");
     }
@@ -37,11 +38,13 @@ function insertLinkBtn(href, { target } = {}) {
     if (target) {
         anchor.target = target;
     }
+    anchor.style.textDecoration = "none";
     anchor.appendChild(clone);
     copyLink.insertAdjacentElement('afterend', anchor);
 }
-export function addLinkOption(optionBtn, { protocol = "web+at", target } = {}) {
+export async function addLinkOption(optionBtn, { protocol = "web+at", target } = {}) {
     const url = findAtLink(optionBtn, { protocol });
+    await new Promise(resolve => setTimeout(resolve, 150));
     insertLinkBtn(url, { target });
 }
-//# sourceMappingURL=options-link.js.map
+//# sourceMappingURL=add-link.js.map

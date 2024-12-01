@@ -1,1 +1,1 @@
-export {};
+declare function atLinks(): Promise<void>;
