@@ -1,0 +1,25 @@
+{
+  "name": "bsky-at-links",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "zip": "zip -8r bsky-at-links.zip dist images manifest.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bsky",
+    "extension",
+    "webextension",
+    "crx",
+    "atproto"
+  ],
+  "author": "jauntywunderkind",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "typescript": "^5.7.2"
+  }
+}

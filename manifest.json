@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Add at:// links to Bluesky",
+  "description": "Add at:// link options to Bluesky posts options menu",
+  "version": "1.0",
+  "icons": {
+    "48": "images/bsky-48.png",
+    "128": "images/bsky-128.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["dist/index.js"],
+      "matches": ["http://bsky.app/"]
+    }
+  ]
+}
