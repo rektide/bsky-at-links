@@ -1,5 +1,5 @@
 function findAtLink(btn: HTMLElement, { protocol = "web+at" } = {}) {
-  const area = btn?.parentNode?.parentNode
+  const area = btn?.parentNode?.parentNode?.parentNode?.parentNode
   const link = area?.firstElementChild?.lastElementChild
 
   if (!link) {
@@ -23,10 +23,11 @@ function insertLinkBtn(href: string, { target }: InsertLinkBtnOptions = {}) {
   }
 
   // copy and modify menu item
-  const clone = copyLink?.lastElementChild?.cloneNode() as HTMLElement | undefined
+  const clone = copyLink.cloneNode() as HTMLElement | undefined
   if (!clone) {
     throw new Error("Expected option item")
   }
+  clone.innerHTML = copyLink.innerHTML
   if (!(clone.firstElementChild instanceof HTMLElement)) {
     throw new Error("Expected option item name")
   }
@@ -43,12 +44,14 @@ function insertLinkBtn(href: string, { target }: InsertLinkBtnOptions = {}) {
   if (target) {
     anchor.target = target
   }
+  anchor.style.textDecoration = "none"
   anchor.appendChild(clone)
 
   copyLink.insertAdjacentElement('afterend', anchor)
 }
 
-export function addLinkOption(optionBtn: HTMLElement, { protocol = "web+at", target }: { protocol?: string, target?: string } = {}) {
+export async function addLinkOption(optionBtn: HTMLElement, { protocol = "web+at", target }: { protocol?: string, target?: string } = {}) {
   const url = findAtLink(optionBtn, { protocol })
+  await new Promise(resolve => setTimeout(resolve, 150))
   insertLinkBtn(url, { target })
 }
