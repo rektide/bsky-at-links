@@ -9,8 +9,26 @@
   },
   "content_scripts": [
     {
-      "js": ["dist/index.js"],
-      "matches": ["http://bsky.app/"]
+      "js": [
+        "dist/index.js"
+      ],
+      "matches": [
+        "https://bsky.app/*"
+      ]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "dist/*",
+        "src/*"
+      ],
+      "matches": [
+        "https://bsky.app/*"
+      ]
+    }
+  ],
+  "permissions": [
+    "scripting"
   ]
 }
