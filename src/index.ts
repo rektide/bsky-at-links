@@ -1,12 +1,15 @@
 async function atLinks(): Promise<void> {
-  const clickSrc = chrome.runtime.getURL("dist/clicks.js")
-  const addLinkSrc = chrome.runtime.getURL("dist/add-link.js")
-  let clicks_ = import(clickSrc).then(m => m.options)
-  let addLink_ = import(addLinkSrc).then(m => m.addLinkOption)
-  let [clicks, addLink] = await Promise.all([clicks_, addLink_])
-  for await (let optionBtn of clicks()) {
+  const modules = ["add-link", "clicks", "style"].map(async function terribleWebExtLoader(mod) {
+    const url = chrome.runtime.getURL(`dist/${mod}.js`)
+    return await import(url)
+  })
+  const [addLink, clicks, _] = await Promise.all(modules)
+
+  console.log({ addLink, clicks })
+
+  for await (let optionBtn of clicks.options()) {
     // TODO: is any delay necessary between button click & popper showing up?
-    addLink(optionBtn)
+    addLink.addLinkOption(optionBtn)
   }
 }
 atLinks()
