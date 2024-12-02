@@ -28,6 +28,7 @@ function insertLinkBtn(href, { target } = {}) {
     if (!(clone.lastElementChild instanceof HTMLElement)) {
         throw new Error("Expected option item icon");
     }
+    clone.ariaLabel = "link to web+at:// resource";
     clone.firstElementChild.innerText = "at:// link";
     clone.lastElementChild.innerHTML = "🔗";
     clone.dataset.testid = "postDropdownLinkBtn";
@@ -38,6 +39,7 @@ function insertLinkBtn(href, { target } = {}) {
         anchor.target = target;
     }
     anchor.style.textDecoration = "none";
+    anchor.classList.add("webext-at-link");
     anchor.appendChild(clone);
     copyLink.insertAdjacentElement('afterend', anchor);
 }
