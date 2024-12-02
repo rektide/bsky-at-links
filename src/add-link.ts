@@ -33,6 +33,7 @@ function insertLinkBtn(href: string, { target }: InsertLinkBtnOptions = {}) {
 	if (!(clone.lastElementChild instanceof HTMLElement)) {
 		throw new Error("Expected option item icon")
 	}
+	clone.ariaLabel = "link to web+at:// resource"
 	clone.firstElementChild.innerText = "at:// link"
 	clone.lastElementChild.innerHTML = "🔗"
 	clone.dataset.testid = "postDropdownLinkBtn"
